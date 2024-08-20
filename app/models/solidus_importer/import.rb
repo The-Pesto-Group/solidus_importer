@@ -18,10 +18,9 @@ module SolidusImporter
       completed: 'completed'
     }
 
-    has_attached_file :file
+    # NOTE: modified file from original to use active storage
+    has_one_attached :file
 
-    do_not_validate_attachment_file_type :file
-    validates_attachment_presence :file
     validates :import_type, presence: true, allow_blank: false
     validates :state, presence: true, allow_blank: false
 

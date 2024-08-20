@@ -49,13 +49,17 @@ module SolidusImporter
 
     private
 
+    # NOTE: Method :scan modified from original
     def scan
-      data = CSV.parse(
-        Paperclip.io_adapters.for(@import.file).read.force_encoding(Encoding::UTF_8),
-        headers: true,
-        encoding: 'UTF-8',
-        header_converters: ->(h) { h.strip }
-      )
+      data = nil
+      @import.file.open do |file_handle|
+        data = CSV.parse(
+          file_handle.read,
+          headers: true,
+          encoding: 'UTF-8',
+          header_converters: ->(h) { h.strip }
+        )
+      end
       prepare_rows(data)
     end
 
