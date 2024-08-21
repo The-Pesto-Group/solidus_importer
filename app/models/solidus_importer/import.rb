@@ -35,7 +35,7 @@ module SolidusImporter
     def import_file=(path)
       raise SolidusImporter::Exception, 'Existing file required' if !path || !File.exist?(path)
 
-      self.file = File.open(path, 'r')
+      self.file.attach(io: File.open(path, 'r'), filename: path, content_type: 'text/csv')
     end
 
     class << self
