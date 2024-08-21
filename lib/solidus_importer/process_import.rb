@@ -39,9 +39,10 @@ module SolidusImporter
     end
 
     class << self
-      def import_from_file(import_path, import_type)
+      def import_from_file(import_path, import_type, before_process_import: -> (_) {})
         import = ::SolidusImporter::Import.new(import_type: import_type)
         import.import_file = import_path
+        before_process_import.(import)
         import.save!
         new(import).process
       end

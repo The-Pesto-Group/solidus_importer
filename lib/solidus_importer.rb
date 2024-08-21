@@ -19,8 +19,9 @@ require 'solidus_importer/process_row'
 
 module SolidusImporter
   class << self
-    def import!(import_path, type:)
-      ProcessImport.import_from_file(import_path, type.to_sym)
+    def import!(import_path, type:, before_process_import: -> (_) {})
+      ProcessImport.
+        import_from_file(import_path, type.to_sym, before_process_import:)
     end
 
     def combined_first_and_last_name_in_address?
