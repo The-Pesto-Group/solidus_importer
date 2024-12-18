@@ -8,7 +8,7 @@ module SolidusImporter
       class_name: 'SolidusImporter::Import',
       inverse_of: :rows
 
-    serialize :data, JSON
+    serialize :data, coder: JSON
 
     enum state: {
       created: 'created',
