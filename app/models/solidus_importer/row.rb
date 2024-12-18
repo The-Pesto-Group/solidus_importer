@@ -10,7 +10,7 @@ module SolidusImporter
 
     serialize :data, coder: JSON
 
-    enum state: {
+    enum :state, {
       created: 'created',
       processing: 'processing',
       failed: 'failed',
