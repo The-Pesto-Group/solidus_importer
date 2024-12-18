@@ -6,4 +6,4 @@ Spree::Backend::Config.configure do |config|
   # on our system.
 end
 
-MIME::Types.add(MIME::Type.new(["application/csv", "csv"]), true)
+Mime::Type.register "application/csv", "csv"
